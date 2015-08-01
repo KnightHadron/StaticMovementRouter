@@ -1,4 +1,7 @@
 # Makefile
-LDFLAGS=-lncurses
+#LDFLAGS=-lncurses
 
-all: SMR
+all: SMR-cli
+
+SMR-cli:
+	gcc cli-main.c -o SMR-cli -lncurses
