@@ -68,6 +68,26 @@ int main_screen(){
 	return 1;
 }
 
+void run_about() {
+	
+}
+
+void run_edit() {
+	
+}
+
+void run_nav() {
+	
+}
+
+void run_view() {
+	
+}
+				
+int verify_quit() {
+	return 1;
+}
+
 int main(int argc, char **argv)
 {
 	init_ncurses();
@@ -80,13 +100,29 @@ int main(int argc, char **argv)
 		if (main_screen()) {
 			clear();
 			refresh();
-			exit = 1;
+			
+			switch (main_menu_choice) {
+				case ABOUT: run_about(); break;
+				case EDIT: run_edit(); break;
+				case NAV: run_nav(); break;
+				case VIEW: run_view(); break;
+				case QUIT:  {
+								if (verify_quit()){
+									exit = 1;
+								}
+								break;
+							}
+				default: exit = 1; // this should never happen
+			}
+			
+			clear();
+			
 		} else {
 			print_center("Sorry, you picked an invalid letter.", scr_max_y - 2);
 		}
 	} while (exit != 1);
 	
-	sleep(1);
+	sleep(1); // why is this here
 	
 	finish_ncurses();
 	return 0;
